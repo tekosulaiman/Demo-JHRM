@@ -32,8 +32,8 @@
 			<url>http://mavensync.zkoss.org/eval</url>
 		</repository>
 		<repository>
-			<id>maven-repository</id>
-			<url>file:///${project.basedir}/maven-repository</url>
+			<id>co.id</id>
+			<url>file:///${project.basedir}/target/repo</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
