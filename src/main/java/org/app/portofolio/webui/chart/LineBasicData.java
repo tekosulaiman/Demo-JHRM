@@ -1,10 +1,10 @@
 package org.app.portofolio.webui.chart;
 
-import org.zkoss.chart.model.CategoryModel;
-import org.zkoss.chart.model.DefaultCategoryModel;
+/*import org.zkoss.chart.model.CategoryModel;
+import org.zkoss.chart.model.DefaultCategoryModel;*/
 
 public class LineBasicData {
-    private static final CategoryModel model;
+    /*private static final CategoryModel model;
     static {
         model = new DefaultCategoryModel();
         model.setValue("Tokyo", "Jan", 7.0);
@@ -59,5 +59,5 @@ public class LineBasicData {
     
     public static CategoryModel getCategoryModel() {
         return model;
-    }
+    }*/
 }

@@ -6,9 +6,9 @@ import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
-import org.zkoss.chart.Charts;
+/*import org.zkoss.chart.Charts;
 import org.zkoss.chart.Legend;
-import org.zkoss.chart.PlotLine;
+import org.zkoss.chart.PlotLine;*/
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.Selectors;
@@ -17,8 +17,8 @@ import org.app.portofolio.webui.chart.LineBasicData;
 
 public class DashBoardVM {
 	
-	@Wire("#chartTest")
-	private Charts chartTest;
+	/*@Wire("#chartTest")
+	private Charts chartTest;*/
 	
 	//Test REstTemplate
 	/*@Autowired
@@ -33,7 +33,7 @@ public class DashBoardVM {
 		
 		//System.out.println("secUserController >>>"+secUserController);
 		
-		System.out.println("Chart >>>"+chartTest);
+		/*System.out.println("Chart >>>"+chartTest);
 		
 		chartTest.setModel(LineBasicData.getCategoryModel());
         
@@ -54,6 +54,6 @@ public class DashBoardVM {
         legend.setLayout("vertical");
         legend.setAlign("right");
         legend.setVerticalAlign("middle");
-        legend.setBorderWidth(0);
+        legend.setBorderWidth(0);*/
 	}
 }
