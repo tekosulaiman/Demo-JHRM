@@ -31,6 +31,10 @@
 			<name>ZK Evaluation Repository</name>
 			<url>http://mavensync.zkoss.org/eval</url>
 		</repository>
+		<repository>
+			<id>maven-repository</id>
+			<url>file:///${project.basedir}/maven-repository</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
