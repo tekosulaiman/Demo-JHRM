@@ -1,0 +1,83 @@
+<zk>
+	<window id="windowReportTo" border="none">
+		<borderlayout height="450px">
+			<!-- Function CRUD -->
+			<!-- <north/> -->
+			<!-- Table Database -->
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
+					<groupbox mold="3d">
+						<caption
+							label="${labels.menu.employee.report.title.assigned.supervisor}">
+						</caption>
+						<hbox>
+							<button label="${labels.button.add}" />
+							<button label="${labels.button.delete}" />
+						</hbox>
+						<space />
+						<listbox>
+							<listhead>
+								<listheader width="5%" align="center" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.name}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.reporting.method}"
+									sort="auto" />
+							</listhead>
+							<listitem>
+								<listcell
+									image="/images/icons/btn_edit.gif"
+									tooltiptext="Click For Edit" />
+								<listcell label="toke" />
+								<listcell label="excel" />
+							</listitem>
+						</listbox>
+					</groupbox>
+					<groupbox mold="3d">
+						<caption
+							label="${labels.menu.employee.report.title.assigned.subordinates}">
+						</caption>
+						<hbox>
+							<button label="${labels.button.add}" />
+							<button label="${labels.button.delete}" />
+						</hbox>
+						<space />
+						<listbox>
+							<listhead>
+								<listheader width="5%" align="center" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.name}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.reporting.method}"
+									sort="auto" />
+							</listhead>
+							<listitem>
+								<listcell
+									image="/images/icons/btn_edit.gif"
+									tooltiptext="Click For Edit" />
+								<listcell label="toke" />
+								<listcell label="excel" />
+							</listitem>
+						</listbox>
+					</groupbox>
+					<groupbox mold="3d">
+						<caption label="${labels.title.attachments}" />
+						<grid>
+							<columns>
+								<column label="" />
+							</columns>
+							<rows>
+								<row>
+									<button
+										label="${labels.button.add}" />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</div>
+			</north>
+		</borderlayout>
+	</window>
+</zk>

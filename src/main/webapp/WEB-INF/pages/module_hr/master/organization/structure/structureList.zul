@@ -1,0 +1,30 @@
+<zk>
+	<window vflex="true">
+		<groupbox mold="3d">
+			<caption label="Organization Structure" />	  
+			
+			<borderlayout vflex="true">
+				<north>
+					<toolbar>
+						<button image="/images/icons/btn_new.gif" label="Add" onClick="@command('doSave')"/> 
+					</toolbar>
+				</north>
+				<center border="none">
+					<tree>
+						<treecols>
+							<treecol label="" />
+						</treecols>
+						<treechildren>
+							<treeitem>
+								<treerow>
+									<treecell label="" />
+								</treerow>
+							</treeitem>
+						</treechildren>
+					</tree>
+				</center>
+				<south/>
+			</borderlayout>          	
+		</groupbox>
+	</window>
+</zk>

@@ -1,0 +1,86 @@
+<zk>
+	<window id="windowSecRoleGroup" title="Form Role Group" border="normal" width="850px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.security.rolegroup.SecRoleGroupDialogVM')" onClose="@command('doClose')">
+		<borderlayout height="425px">
+			<north>
+				<toolbar>
+					<button mold="trendy" image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/>
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column/>
+						<column align="center" width="75px"/>
+						<column/>
+					</columns>
+					<rows>
+						<row>
+							<space/>
+							<space/>
+							<space/>
+						</row>
+						<row>	
+							<hbox>
+								<label value="Role"/>
+								<cell/>
+								<combobox id="comboboxRole" mold="rounded" readonly="true" model="@load(vm.secRoles)" value="@bind(vm.secRole.rolShortdescription)" onSelect="@command('doSelect')">
+									<template name="model" var="secRole">
+										<comboitem label="@load(secRole.rolShortdescription)"/>
+									</template>												
+								</combobox>
+							</hbox>
+						</row>
+						<row>	
+							<vbox>
+								<auxhead>
+									<auxheader label="Avaible Group"/> 
+								</auxhead>
+								<listbox id="listBoxGroupAvaible" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
+									model="@bind(vm.listModelListAvaibleSecRolegroups)">
+									<listhead sizable="true">
+										<listheader label="Group Name" sort="auto(grpShortdescription)" />
+									</listhead>
+									<template name="model" var="secGroup">
+									<listitem>
+										<listcell label="@bind(secGroup.grpShortdescription)" />
+									</listitem>
+									</template>
+								</listbox>
+							</vbox>
+							
+							<vbox>
+								<button image="/images/icons/btn_right_double_arrow.png" onClick="@command('doChooseAll')" />
+								<button image="/images/icons/btn_right_arrow.png" onClick="@command('doChoose')" />
+								<button image="/images/icons/btn_left_arrow.png" onClick="@command('doRemove')" />
+								<button image="/images/icons/btn_left_double_arrow.png" onClick="@command('doRemoveAll')" />
+							</vbox>
+							
+							<vbox>
+								<auxhead>
+									<auxheader label="Selected Group"/> 
+								</auxhead>
+									<listbox id="listBoxGroupSelected" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
+									model="@bind(vm.listModelListSelectedSecRolegroups)">
+									<listhead sizable="true">
+										<listheader label="Group Name" sort="auto(grpShortdescription)" />
+									</listhead>
+									<template name="model" var="secGroup">
+									<listitem>
+										<listcell label="@bind(secGroup.grpShortdescription)" />
+									</listitem>
+									</template>
+								</listbox>
+							</vbox>
+						</row>
+						<row>
+							<space/>
+							<space/>
+							<space/>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

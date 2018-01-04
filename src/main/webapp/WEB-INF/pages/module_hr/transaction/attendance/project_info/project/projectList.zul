@@ -1,0 +1,46 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.attendance.projectinfo.project.ProjectListVM')" border="none" width="100%" vflex="true">
+		<borderlayout vflex="true">
+			<north>
+				<div sclass="z-toolbar" style="padding:0">
+					<hbox pack="stretch" width="100%">
+						<toolbar align="start" style="border-style: none;">
+							<label value="Project"/>
+							<textbox id="textboxFilter" mold="rounded"/>
+							<button mold="trendy" image="/images/icons/btn_search.gif" label="Filter" onClick="@command('doFilter')"/>
+						</toolbar>
+						<toolbar align="end" style="border-style: none;">
+							<button mold="trendy" image="/images/icons/btn_new.gif" label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button mold="trendy" image="/images/icons/btn_delete.gif" label="${labels.button.delete}" onClick="@command('doDelete')"/>
+							<button mold="trendy" image="/images/icons/btn_refresh.gif" label="Refresh" onClick="@command('doRefresh')"/>
+							<button mold="trendy" image="/images/icons/btn_print.gif" label="Print" onClick="@command('doPrint')"/>
+						</toolbar>
+					</hbox>	
+				</div>
+			</north>
+			<center>
+				<borderlayout>
+					<north title="List Project" splittable="true" collapsible="true">
+						<listbox id="listboxPayGrade">
+							<listhead sizable="true">
+								<listheader width="50px" align="center"/>
+								<listheader label="Customer"/>
+								<listheader label="Project"/>	
+								<listheader label="PIC"/>	
+								<listheader label="Description"/>	
+							</listhead>
+						</listbox>	
+					</north>
+					<south title="List Activity" splittable="true" collapsible="true">
+						<listbox id="listboxCurrency">
+							<listhead sizable="true">
+								<listheader label="Activity"/>
+							</listhead>		
+						</listbox>
+					</south>
+				</borderlayout>	
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

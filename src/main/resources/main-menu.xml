@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLRootMenu>
+	<!-- DON'T CHANGE THE ID FOR the Dashboard menu entry -->
+	<!-- it's used in the HomeVM.java  -->
+	<menuItem id="menu.home.dashboard" zulNavigation="/WEB-INF/pages/dashboard.zul" iconName="/images/icons/menu_dashboard.gif" />
+
+	<menu id="menu.parent.admin" rightName="menuCat_Administration">
+		<menuItem id="menu.item.user" iconName="/images/icons/menu_user_group.png" zulNavigation="/WEB-INF/pages/sec_user/secUserList.zul" rightName="menuItem_Administration_Users" />
+		<menu id="menu.parent.right" rightName="menuCat_UserRights">
+			<menuItem id="menu.item.userole" zulNavigation="/WEB-INF/pages/sec_user_role/secUserRoleList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_UserRoles" />
+			<menuItem id="menu.item.role" zulNavigation="/WEB-INF/pages/sec_role/secRoleList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Roles" />
+			<menuItem id="menu.item.rolegroup" zulNavigation="/WEB-INF/pages/sec_role_group/secRoleGroupList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_RoleGroups" />
+			<menuItem id="menu.item.group" zulNavigation="/WEB-INF/pages/sec_group/secGroupList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Groups" />
+			<menuItem id="menu.item.groupright" zulNavigation="/WEB-INF/pages/sec_group_right/secGroupRightList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_GroupRights" />
+			<menuItem id="menu.item.right" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
+		</menu>
+		<menuItem id="menu.item.setting" zulNavigation="/WEB-INF/pages/module_hr/master/setting/settingList.zul"/>
+	</menu>
+	
+	<menu id="menu.parent.master.hr" rightName="menu_Master_Data">
+		<menu id="menu.parent.master.job" rightName="menu_Master_Job">
+			<menuItem id="menu.item.job.jobtitle" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobtitle/jobTitleList.zul" rightName="menu_Item_Job_Titles" />
+			<menuItem id="menu.item.job.paygrade" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/paygrade/payGradeList.zul" rightName="menu_Item_Pay_Grades" />
+			<menuItem id="menu.item.job.employementstatus" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/employementstatus/employementStatusList.zul" rightName="menu_Item_Employment_Status" />
+			<menuItem id="menu.item.job.jobcategory" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobcategory/jobCategoryList.zul" rightName="menu_Item_Job_Categories" />
+			<menuItem id="menu.item.job.workshift" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/workshift/workShiftList.zul" rightName="menu_Item_Work_Shifts" />
+		</menu>		
+		<menu id="menu.parent.organization" rightName="menu_Master_Organization">
+			<menuItem id="menu.item.organization.generalinformation" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/generalinformation/generalInformationList.zul" rightName="menu_Item_General_Information" />
+			<menuItem id="menu.item.organization.location" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/location/locationList.zul" rightName="menu_Item_Locations" />
+			<menuItem id="menu.item.organization.structureorganization" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/structure/structureList.zul" rightName="menu_Item_Organization_Structure" />
+		</menu>
+		
+		<menu id="menu.parent.qualification" rightName="menu_Master_Qualifications">
+			<menuItem id="menu.item.qualification.skill" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/skill/skillList.zul" rightName="menu_Item_Skills" />
+			<menuItem id="menu.item.qualification.education" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/education/educationList.zul" rightName="menu_Item_Education" />
+			<menuItem id="menu.item.qualification.license" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/license/licenseList.zul" rightName="menu_Item_Licenses" />
+			<menuItem id="menu.item.qualification.language" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/language/languageList.zul" rightName="menu_Item_Languages" />
+			<menuItem id="menu.item.qualification.membership" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/membership/membershipList.zul" rightName="menu_Item_Memberships" />
+		</menu>	
+		
+		<menu id="menu.parent.nationality" rightName="menu_Master_Nationalities">
+			<menuItem id="menu.item.nationality" zulNavigation="/WEB-INF/pages/module_hr/master/nationality/nationalityList.zul" rightName="menu_Item_Nationalities" />
+		</menu>
+	</menu>
+	
+	<menu id="menu.parent.transaction.hr" rightName="menu_Transaction_Data">
+		<menu id="menu.parent.pim" rightName="menu_Pim" >
+			<menuItem id="menu.item.pim.employee" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/employee/employeeList.zul" rightName="menu_Item_Employee" />
+		</menu>
+		
+		<menu id="menu.parent.leave" rightName="menu_Parent_Leave">
+			<menu id="menu.parent.leave.parameter" rightName="menu_Parent_Leave_Parameter">
+				<menuItem id="menu.item.leave.period" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/period/period.zul" rightName="menu_Item_Leave_Period" />
+				<menuItem id="menu.item.leave.type" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/type/typeList.zul" rightName="menu_Item_Leave_Type" />
+				<menuItem id="menu.item.leave.workweek" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/workweek/workWeek.zul" rightName="menu_Item_Leave_WorkWeek" />
+				<menuItem id="menu.item.leave.holiday" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/holiday/holidayList.zul" rightName="menu_Item_Leave_Holiday" />
+			</menu>
+			<menuItem id="menu.item.entitlement" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_entitlement/leaveEntitlementList.zul" rightName="menu_Leave_Entitlement" />
+			<menuItem id="menu.item.leave" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave/leaveList.zul" rightName="menu_Item_Leave" />
+		</menu>
+		
+		<menu id="menu.parent.attendance" rightName="menu_Parent_Attendance">
+			<menuItem id="menu.item.attendance.timesheet" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/timesheet/timeSheetList.zul" rightName="menu_Item_Attedance_Timesheet" />
+			<menuItem id="menu.item.attendance.employee.record" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/employee_record/employeeRecordList.zul" rightName="menu_Item_Attedance_Employee_Record" />
+			<menu id="menu.parent.attendance.project.info" rightName="menu_Parent_Attendance_Project_Info">
+				<menuItem id="menu.item.attendance.project.info.customer" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/project_info/customer/customerList.zul" rightName="menu_Item_Attendance_Project_Info_Customer" />
+				<menuItem id="menu.item.attendance.project.info.project" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/project_info/project/projectList.zul" rightName="menu_Item_Attendance_Project_Info_Project" />
+			</menu>
+		</menu>
+		
+		<menu id="menu.parent.recruitment" rightName="menu_Parent_Recruitment">
+			<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/recruitment/candidate/candidateList.zul" rightName="menu_Item_Candidates" />
+			<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
+		</menu>
+	</menu>
+</XMLRootMenu>

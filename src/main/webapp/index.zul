@@ -1,0 +1,5 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk> 
+	<!-- <include src="/pages/home.zul"/> -->
+	<include src="/login.zul"/>
+</zk>

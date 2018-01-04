@@ -1,0 +1,82 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="windowCandidateDialog" title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="60%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.candidate.RecruitmentCandidateDialogVM')">
+		<borderlayout
+			form="@id('form') @load(vm.trsJobCandidate) @save(vm.trsJobCandidate, before={'doSave', 'doSaveAndNew'}) 
+				@validator(vm.formValidator)">
+			<north>
+				<toolbar>
+					<button id="buttonSaveCandidate" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveAndNewCandidate" label="New" onClick="@command('doSaveAndNew')"></button>
+					<button id="buttonEditCandidate" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column width="25%" />
+						<column width="75%"/>
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.name}" />
+							<vlayout>
+								<hlayout>
+									<textbox id="textboxFirstName" width="100%" placeholder="First"
+										value="@bind(form.firstName)"></textbox>
+									<textbox id="textboxMiddleName" width="100%" placeholder="Middle"
+										value="@bind(form.middleName)"></textbox>
+									<textbox id="textboxLastName" width="100%" placeholder="Last"
+										value="@bind(form.lastName)"></textbox>	
+								</hlayout>
+								<label value="@load(vmsgs['firstName'])" width="100%" style="color: red"></label>
+							</vlayout>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.email}" />
+							<vlayout>
+								<hlayout>
+									<textbox id="textboxEmail" width="130%" value="@bind(form.email)"/>	
+								</hlayout>
+								<label value="@load(vmsgs['email'])" width="100%" style="color: red"></label>
+							</vlayout>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.contact_no}" />
+							<vlayout>
+								<hlayout>
+									<textbox id="textboxContactNo" width="130%" value="@bind(form.contactNo)"/>	
+								</hlayout>
+								<label value="@load(vmsgs['contactNo'])" width="100%" style="color: red"></label>
+							</vlayout>
+							<separator/>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.vacancy}" />
+							<vlayout>
+								<hlayout>
+									<combobox id="comboboxVacancy" width="100%" model="@bind(vm.trsJobVacancies)" 
+										selectedItem="@bind(form.idTrsJobVacancy)">
+										<template name="model">
+											<comboitem label="@load(each.name)"></comboitem>
+										</template>
+									</combobox>
+								</hlayout>
+								<!-- <label value="@load(vmsgs['vacancy'])" width="100%" style="color: red"></label> -->
+							</vlayout>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.resume}" />
+							<hbox hflex="true">
+								<textbox id="textboxResume" value="@bind(form.resume)" readonly="true" hflex="true"></textbox>
+								<fileupload label="${labels.button.dialog.browse}" onUpload="@command('doUpload', event=event)"></fileupload>	
+							</hbox>
+							<!-- <button id="buttonResume" label="${labels.button.dialog.browse}" upload="true"></button> -->
+							
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

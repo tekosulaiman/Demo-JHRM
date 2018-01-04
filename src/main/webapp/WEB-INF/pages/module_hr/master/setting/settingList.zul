@@ -1,0 +1,32 @@
+<zk>
+	<window id="windowSystemSetting" border="none" apply="org.zkoss.bind.BindComposer" hflex="true" vflex="true" viewModel="@id('vm') @init('org.app.portofolio.webui.administration.SettingVM')">
+		<borderlayout hflex="true" >
+			<north>
+				<toolbar>
+					<button id="buttonSaveSystemSetting" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonEditSystemSetting" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
+				</toolbar>
+			</north>
+			<center hflex="true">
+				<grid id="gridSettings" hflex="true" model="@bind(vm.listSetting)">
+					<columns hflex="true">
+						<column width="0%" />
+						<column width="0%" />
+						<column width="30%" />
+						<column width="70%"/>						
+					</columns>
+					<rows id="gridRowsSettings" hflex="true">
+						<template name="model">
+							<row hflex="true">
+								<textbox visible="false" value="@bind(each.idSetting)"></textbox>
+								<textbox visible="false" value="@bind(each.keySet)"></textbox>
+								<label value="@bind(each.description)" hflex="true"/>
+								<textbox hflex="true" value="@bind(each.valueSet)" disabled="@bind(vm.editingMode eq true ? false : true)"></textbox>
+							</row>	
+						</template>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

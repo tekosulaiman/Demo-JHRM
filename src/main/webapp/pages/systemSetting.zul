@@ -1,0 +1,40 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="windowSystemSetting" border="normal" apply="org.zkoss.bind.BindComposer" hflex="true" vflex="true">
+		<borderlayout hflex="true">
+			<north>
+				<toolbar>
+					<button id="buttonSaveSystemSetting" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+				</toolbar>
+			</north>
+			<center hflex="true">
+				<grid hflex="true">
+					<columns hflex="true">
+						<column width="50%" />
+						<column width="50%"/>						
+					</columns>
+					<rows hflex="true">
+						<row hflex="true">
+							<hbox hflex="true">
+								<label value="Upload Root Directory" hflex="true"/>
+								<vbox hflex="true">
+									<textbox hflex="true" value="C:\JHRM\upload\attachment"></textbox>
+									<label value="Ini Root Path" hflex="true" style="color: red"></label>
+								</vbox>	
+							</hbox>
+						</row>
+						<row hflex="true">
+							<hbox hflex="true">
+								<label value="Background Color" hflex="true"/>
+								<vbox hflex="true">
+									<textbox hflex="true" value="blue"></textbox>
+									<label value="Background Color properties" hflex="true" style="color: red"></label>
+								</vbox>	
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

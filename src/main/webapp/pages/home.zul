@@ -1,0 +1,46 @@
+<?page title="Menu"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/css/test.css" ?>
+<zk>
+	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')" vflex="true" hflex="true"
+		style="">
+		<borderlayout id="borderlayoutMain" vflex="true" hflex="true">
+			<north border="none" height="55px">
+				<borderlayout vflex="true">
+					<north border="none">
+						<hbox>
+							<label value="User Login :"/>
+							<label id="labelUserName"/>
+							<a onClick="@command('doLogout')">Logout</a>
+						</hbox>
+					</north>
+					<south vflex="true">
+						<menubar id="menubarMenu"/>
+					</south>
+				</borderlayout>
+			</north>
+	   
+	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="false" autoscroll="true">
+	        	<panel width="100%" border="none">
+	                <panelchildren>
+	                	<tree id="treeMenu"/>
+	                </panelchildren>
+	             </panel>   
+			</west>
+			
+			<center id="center" border="none">
+				<tabbox id="tabbox" vflex="true">
+					<tabs id="tabs"/>
+					<tabpanels id="tabpanels" vflex="true" />
+				</tabbox>
+			</center>
+			
+			<south height="4%">
+				<hbox pack="center" width="100%">
+					<label id="labelZkVersion"/>
+					<label id="userName"/>
+				</hbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

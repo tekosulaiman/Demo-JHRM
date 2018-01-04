@@ -1,0 +1,64 @@
+<zk> 
+	<window id="windowUser" title="Form User" border="normal" width="550px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.security.user.SecUserDialogVM')" onClose="@command('doClose')">
+		<borderlayout height="425px">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column align="right" width="150px" label=""/>
+						<column label=""/>
+					</columns>
+					<rows>
+						<row><space/></row>
+						<row>	
+							<label value="Login Name"/>
+							<textbox mold="rounded" value="@bind(vm.secUser.usrLoginname)"/>
+						</row>
+						<row>	
+							<label value="Password"/>
+							<textbox id="textboxPassword" mold="rounded" type="password" value="@bind(vm.secUser.usrPassword)"/>
+						</row>
+						<row>	
+							<label value="Retype Password"/>
+							<textbox mold="rounded" type="password" value="@bind(vm.secUser.usrPassword)"/>
+						</row>
+						<row>	
+							<label value="Frist Name"/>
+							<textbox mold="rounded" width="350px" value="@bind(vm.secUser.usrFirstname)"/>
+						</row>
+						<row>	
+							<label value="Last Name"/>
+							<textbox mold="rounded" width="350px" value="@bind(vm.secUser.usrLastname)"/>
+						</row>
+						<row>	
+							<label value="Email"/>
+							<textbox mold="rounded" value="@bind(vm.secUser.usrEmail)"/>
+						</row>
+						<row>
+							<label value="User enabled"/>
+							<checkbox checked="@bind(vm.secUser.usrEnabled)"/>
+						</row>
+						<row>
+							<label value="Account not expired"/>
+							<checkbox checked="@bind(vm.secUser.usrAccountnonexpired)"/>
+						</row>
+						<row>	
+							<label value="Credentials not expired"/>
+							<checkbox checked="@bind(vm.secUser.usrCredentialsnonexpired)"/>
+						</row>
+						<row>
+							<label value="Account not locked"/>
+							<checkbox checked="@bind(vm.secUser.usrAccountnonlocked)"/>
+						</row>
+						<row><space/></row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

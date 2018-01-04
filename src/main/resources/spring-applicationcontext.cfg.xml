@@ -1,0 +1,208 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop="http://www.springframework.org/schema/aop" 
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:jee="http://www.springframework.org/schema/jee" 
+        xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+        
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+            http://www.springframework.org/schema/jee 
+            http://www.springframework.org/schema/jee/spring-jee-4.0.xsd 
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+            http://www.springframework.org/schema/task 
+            http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+    
+    <context:component-scan base-package="co.id.dao.*" />
+    <!-- <context:component-scan base-package="service.*" /> -->
+    
+    <!-- Untuk Transaction -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="hibernateProperties">
+            <props>
+                <!--prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <!-- <prop key="hibernate.dialect"> org.hibernate.dialect.Oracle10gDialect</prop> -->          
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- the transactional semantics... -->
+        <tx:attributes>
+            <!-- all methods starting with 'get' are read-only -->
+            <tx:method name="get*" read-only="true"/>
+
+            <!-- other methods use the default transaction settings (see below) -->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- ensure that the above transactional advice runs for any execution of an operation defined by the FooService interface -->
+    <aop:config>
+        <aop:pointcut id="fooServiceOperation" expression="execution(* org.module.*.*.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
+    </aop:config>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="maxResults" value="3000" />
+    </bean>
+    
+    <!-- Konek ke API Common -->
+    <bean id="baseDao" abstract="true" p:hibernateTemplate-ref="hibernateTemplate" class="org.module.api.common.dao.base.BasisDAO">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="secGroupDAO" class="org.module.sysadmin.dao.impl.SecGroupDAOImpl" parent="baseDao"/>
+    <bean id="secGroupRightDAO" class="org.module.sysadmin.dao.impl.SecGroupRightDAOImpl" parent="baseDao"/>
+    <bean id="secRightDAO" class="org.module.sysadmin.dao.impl.SecRightDAOImpl" parent="baseDao"/>
+    <bean id="secRoleDAO" class="org.module.sysadmin.dao.impl.SecRoleDAOImpl" parent="baseDao"/>
+    <bean id="secRoleGroupDAO" class="org.module.sysadmin.dao.impl.SecRoleGroupDAOImpl" parent="baseDao"/>
+    <bean id="secUserRoleDAO" class="org.module.sysadmin.dao.impl.SecUserRoleDAOImpl" parent="baseDao"/>
+    <bean id="secUserDAO" class="org.module.sysadmin.dao.impl.SecUserDAOImpl" parent="baseDao"/>
+	
+    <bean id="loginService" class="org.module.sysadmin.service.impl.LoginServiceImpl">
+        <property name="secUserDAO" ref="secUserDAO" />
+    </bean>
+    
+    <bean id="securityService" class="org.module.sysadmin.service.impl.SecurityServiceImpl">
+        <property name="secGroupDAO" ref="secGroupDAO" />
+        <property name="secGroupRightDAO" ref="secGroupRightDAO" />
+        <property name="secRightDAO" ref="secRightDAO" />
+        <property name="secRoleDAO" ref="secRoleDAO" />
+        <property name="secRoleGroupDAO" ref="secRoleGroupDAO" />       
+        <property name="secUserRoleDAO" ref="secUserRoleDAO" />
+        <property name="secUserDAO" ref="secUserDAO" />
+    </bean>
+    	
+    <bean id="userService" class="org.module.sysadmin.service.impl.UserServiceImpl">
+        <property name="secGroupDAO" ref="secGroupDAO" />
+        <property name="secGroupRightDAO" ref="secGroupRightDAO" />
+        <property name="secRightDAO" ref="secRightDAO" />
+        <property name="secRoleDAO" ref="secRoleDAO" />
+        <property name="secRoleGroupDAO" ref="secRoleGroupDAO" />       
+        <property name="secUserRoleDAO" ref="secUserRoleDAO" />
+        <property name="secUserDAO" ref="secUserDAO" />
+    </bean>
+    
+    <bean id="userWorkspace" class="org.app.portofolio.UserWorkspace" scope="session" />
+    
+    <!-- HR -->
+    <!-- Inject DAO -->
+  	<!-- Job -->
+  	<bean id="mstJobtitleDAO" class="org.module.hr.dao.impl.MstJobtitleDAOImpl" parent="baseDao"/>
+  	<bean id="mstPaygradeDAO" class="org.module.hr.dao.impl.MstPaygradeDAOImpl" parent="baseDao"/>
+  	<bean id="mstEmployementStatusDAO" class="org.module.hr.dao.impl.MstEmployementStatusDAOImpl" parent="baseDao"/>
+  	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Organization -->
+  	<bean id="mstLocationDAO" class="org.module.hr.dao.impl.MstLocationDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Qualification -->
+  	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
+  	<bean id="mstLicenseDAO" class="org.module.hr.dao.impl.MstLicenseDAOImpl" parent="baseDao"/>
+  	<bean id="mstLanguageDAO" class="org.module.hr.dao.impl.MstLanguageDAOImpl" parent="baseDao"/>
+  	<bean id="mstEducationDAO" class="org.module.hr.dao.impl.MstEducationDAOImpl" parent="baseDao"/>
+  	<bean id="mstMembershipDAO" class="org.module.hr.dao.impl.MstMembershipDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Nationality -->
+  	<bean id="mstNationalityDAO" class="org.module.hr.dao.impl.MstNationalityDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Recruitment -->
+  	<bean id="trsJobVacancyDAO" class="org.module.hr.dao.impl.TrsJobVacancyDAOImpl" parent="baseDao"/>
+  	<bean id="trsJobCandidateDAO" class="org.module.hr.dao.impl.TrsJobCandidateDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Employee -->
+  	<bean id="trsEmployeeDAO" class="org.module.hr.dao.impl.TrsEmployeeDAOImpl" parent="baseDao"/>
+  	<bean id="trsEmployeeEmergencyContactDAO" class="org.module.hr.dao.impl.TrsEmployeeEmergencyContactDAOImpl" parent="baseDao"/>
+  	<bean id="trsEmployeeDependentDAO" class="org.module.hr.dao.impl.TrsEmployeeDependentDAOImpl" parent="baseDao"/>
+  	<bean id="trsEmployeeLicenseDAO" class="org.module.hr.dao.impl.TrsEmployeeLicenseDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeMembershipDAO" class="org.module.hr.dao.impl.TrsEmployeeMembershipDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeImmigrationDAO" class="org.module.hr.dao.impl.TrsEmployeeImmigrationDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeExprienceDAO" class="org.module.hr.dao.impl.TrsEmployeeExprienceDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeEducationDAO" class="org.module.hr.dao.impl.TrsEmployeeEducationDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeLanguageDAO" class="org.module.hr.dao.impl.TrsEmployeeLanguageDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeSalaryDAO" class="org.module.hr.dao.impl.TrsEmployeeSalaryDAOImpl" parent="baseDao"/>
+	
+	<!-- Setting -->
+	<bean id="mstSettingDAO" class="org.module.hr.dao.impl.MstSettingDAOImpl" parent="baseDao"/>
+	
+	<!-- Upload File -->
+	<bean id="mstUploadFileDAO" class="org.module.hr.dao.impl.MstUploadFileDAOImpl" parent="baseDao"/>
+	
+	<!-- Inject Service -->
+	<!-- Job -->
+	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
+        <property name="mstJobtitleDAO" ref="mstJobtitleDAO" />
+        <property name="mstPaygradeDAO" ref="mstPaygradeDAO" />
+        <property name="mstEmployementStatusDAO" ref="mstEmployementStatusDAO" />
+        <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
+    </bean>
+    
+    <!-- Organization -->
+  	<bean id="organizationService" class="org.module.hr.service.impl.OrganizationServiceImpl">
+  		<property name="mstLocationDAO" ref="mstLocationDAO" />
+  	</bean>
+	
+	<!-- Qualification Service -->
+	<bean id="qualificationService" class="org.module.hr.service.impl.QualificationServiceImpl">
+        <property name="mstSkillDAO" ref="mstSkillDAO" />
+        <property name="mstLicenseDAO" ref="mstLicenseDAO" />
+        <property name="mstEducationDAO" ref="mstEducationDAO" />
+        <property name="mstLanguageDAO" ref="mstLanguageDAO" />
+        <property name="mstMembershipDAO" ref="mstMembershipDAO" />
+    </bean>
+
+    <!-- Nationality -->
+    <bean id="nationalityService" class="org.module.hr.service.impl.NationalityServiceImpl">
+        <property name="mstNationalityDAO" ref="mstNationalityDAO" />
+    </bean>
+    
+    <!-- Recruitment Service -->
+	<bean id="recruitmentService" class="org.module.hr.service.impl.RecruitmentServiceImpl">
+        <property name="trsJobVacancyDAO" ref="trsJobVacancyDAO" />
+        <property name="trsJobCandidateDAO" ref="trsJobCandidateDAO" />
+    </bean>
+    
+    <!-- Employee -->
+    <bean id="employeeService" class="org.module.hr.service.impl.EmployeeServiceImpl">
+    	<property name="trsEmployeeDAO" ref="trsEmployeeDAO"/>
+    	<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>	
+    	<property name="trsEmployeeDependentDAO" ref="trsEmployeeDependentDAO"/>
+    	<property name="trsEmployeeLicenseDAO" ref="trsEmployeeLicenseDAO"/>
+    	<property name="trsEmployeeMembershipDAO" ref="trsEmployeeMembershipDAO"/>	
+    	<property name="trsEmployeeImmigrationDAO" ref="trsEmployeeImmigrationDAO"/>
+    	<property name="trsEmployeeExprienceDAO" ref="trsEmployeeExprienceDAO"/>
+    	<property name="trsEmployeeEducationDAO" ref="trsEmployeeEducationDAO"/>
+    	<property name="trsEmployeeLanguageDAO" ref="trsEmployeeLanguageDAO"/>
+    	<property name="trsEmployeeSkillDAO" ref="trsEmployeeSkillDAO"/>
+    	<property name="trsEmployeeSalaryDAO" ref="trsEmployeeSalaryDAO"/>
+    </bean>
+    
+    <!-- System Setting -->
+    <bean id="administrationService" class="org.module.hr.service.impl.AdministrationServiceImpl">
+    	<property name="mstSettingDAO" ref="mstSettingDAO"/>
+    </bean>
+    
+    <!-- Upload Servie -->
+    <bean id="uploadFileService" class="org.module.hr.service.impl.UploadFileServiceImpl">
+    	<property name="mstUploadFileDAO" ref="mstUploadFileDAO"/>
+    </bean>
+</beans>

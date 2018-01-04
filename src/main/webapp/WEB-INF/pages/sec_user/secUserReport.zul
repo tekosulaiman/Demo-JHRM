@@ -1,0 +1,5 @@
+<zk>
+	<window title="Report" border="normal" width="800px" height="500px" maximizable="true" closable="true" mode="modal"><!-- apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('co.id.webui.security.user.SecUserListVM')" -->
+		<jasperreport id="report" height="100%" />
+	</window>
+</zk>

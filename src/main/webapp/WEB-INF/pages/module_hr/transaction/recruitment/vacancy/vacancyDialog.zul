@@ -1,0 +1,63 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="windowVacancyDialog" title="${labels.menu.recruitment.vacancy.form.title}" border="normal" height="350px" width="40%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" 
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.vacancy.RecruitmentVacancyDialogVM')" 
+		validationMessages="@id('vmsgs')">
+		<borderlayout 
+			form="@id('form') @load(vm.trsJobVacancy) @save(vm.trsJobVacancy, before={'doSave', 'doSaveAndNew'}) 
+				@validator(vm.formValidator)">
+			<north>
+				<toolbar>
+					<button id="buttonSaveVacancy" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveAndNewVacancy" label="${labels.button.dialog.saveandnew}" onClick="@save(vm.trsJobVacancy)@command('doSaveAndNew')"></button>
+					<button id="buttonEditVacancy" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column width="25%" />
+						<column width="50%"/>
+						<column  width="25%"/>
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.jobTitle}" />
+							<combobox id="comboboxJobTitle" width="100%" model="@bind(vm.listJobtitle)" 
+								selectedItem="@bind(form.idJobTitle)">
+								<template name="model">
+									<comboitem label="@load(each.jobName)" value="@load(each)"></comboitem>	
+								</template>	
+							</combobox>
+							<label value="@load(vmsgs['idJobTitle'])" width="100%" style="color: red"></label>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.vacancyName}" />
+							<textbox id="textboxVacancyName" width="100%" value="@bind(form.name)"/>
+							<label value="@load(vmsgs['name'])" width="100%" style="color: red"></label>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.hiringManager}" />
+							<combobox id="comboboxHiringManager" width="100%" model="@bind(vm.hiringManagerList)" 
+								selectedItem="@bind(form.idEmployee)">
+								<template name="model">
+									<comboitem label="@load(each.firstName)" value="@load(each)"></comboitem>	
+								</template>	
+							</combobox>
+							<label value="@load(vmsgs['idEmployee'])" width="100%" style="color: red"></label>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.numberOfPositions}" />
+							<textbox id="textboxNumberOfPositions" width="100%" value="@bind(form.noOfPositions)"/>
+							<label value="@load(vmsgs['noOfPositions'])" width="100%" style="color: red"></label>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.description}" />
+							<textbox id="textboxDescription" width="100%" rows="5" value="@bind(form.description)"/>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

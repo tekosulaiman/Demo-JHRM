@@ -1,0 +1,10 @@
+<zk>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="Timeout"?>
+	<window border="none" mode="modal" position="center,top">
+		<label value="${c:l('message_Session_Timeout')}" />
+		<div align="center">
+			<a href="/">${c:l('btnBackToStart')}</a>
+		</div>
+	</window>
+</zk>

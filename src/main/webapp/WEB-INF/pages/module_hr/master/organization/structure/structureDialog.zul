@@ -1,0 +1,36 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Add Unit" border="normal" width="40%">
+		<grid>
+			<columns>
+				<column width="15%" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Unit  Id" />
+					<textbox width="200px" />
+				</row>
+				<row>
+					<label value="Name" />
+					<textbox width="200px" />
+				</row>
+				<row>
+					<label value="Description" />
+					<textbox width="200px" rows="5" />
+				</row>
+				<row spans="2">
+					<hbox>
+						<label value="This unit will be added under :" />
+						<label value="Unit added" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<hbox>
+			<button label="Save" />
+			<button label="Cancel" />
+		</hbox>
+	</window>
+</zk>

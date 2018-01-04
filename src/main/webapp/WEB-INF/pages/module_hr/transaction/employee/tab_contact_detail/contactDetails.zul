@@ -1,0 +1,122 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="none" width="100%"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.ContactDetails')"
+		validationMessages="@id('vmsgs')">
+		<groupbox mold="3d">
+			<caption
+				label="${labels.menu.employee.contact.title.contact.details}" />
+			<borderlayout
+				form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)"
+				height="500px">
+				<north border="none">
+					<div sclass="z-toolbar" style="padding:0">
+						<hbox pack="stretch" width="100%">
+							<toolbar align="start"
+								style="border-style: none;">
+								<button id="buttonSave" mold="trendy"
+									image="/images/icons/btn_save.gif" label="Save"
+									onClick="@command('doSave')" />
+								<button id="buttonEdit" mold="trendy"
+									image="/images/icons/btn_edit.gif" label="Edit"
+									onClick="@command('doEdit')" />
+							</toolbar>
+						</hbox>
+					</div>
+				</north>
+				<center border="none" autoscroll="true">
+					<grid>
+						<rows>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.address.street.one}" />
+								<textbox id="textBoxAddressStreet1"
+									value="@bind(form.addressStreet1)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.address.street.two}" />
+								<textbox id="textBoxAddressStreet2"
+									value="@bind(form.addressStreet2)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.city}" />
+								<textbox id="textBoxCity"
+									value="@bind(form.city)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.state.province}" />
+								<textbox id="textBoxProvince"
+									value="@bind(form.province)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.zip.postal.code}" />
+								<textbox id="textBoxZip"
+									value="@bind(form.zip)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.country}" />
+								<bandbox id="bandBoxNationality"
+									value="@bind(form.country)"
+									onOpen="@command('openBandBoxNationality')">
+									<bandpopup>
+										<vbox>
+											<hbox>
+												<textbox
+													value="@bind(vm.countryKeySearch)" />
+												<button label="Search"
+													onClick="@command('search')" />
+											</hbox>
+											<listbox id="listBoxCountry"
+												selectedItem="@bind(vm.selectedNationality)">
+												<listhead>
+													<listheader
+														label="Description" />
+												</listhead>
+											</listbox>
+										</vbox>
+									</bandpopup>
+								</bandbox>
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.home.telephone}" />
+								<textbox id="textBoxHomeTelephone"
+									value="@bind(form.homeTelephone)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.mobile.telephone}" />
+								<textbox id="textBoxMobile"
+									value="@bind(form.mobile)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.work.telephone}" />
+								<textbox id="textBoxWorkTelephone"
+									value="@bind(form.workTelephone)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.work.email}" />
+								<textbox id="textBoxWorkEmail"
+									value="@bind(form.workEmail)" />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.other.email}" />
+								<textbox id="textBoxOtherEmail"
+									value="@bind(form.otherEmail) " />
+							</row>
+						</rows>
+					</grid>
+				</center>
+			</borderlayout>
+		</groupbox>
+	</window>
+</zk>

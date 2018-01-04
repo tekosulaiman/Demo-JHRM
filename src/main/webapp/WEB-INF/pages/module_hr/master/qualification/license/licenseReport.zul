@@ -1,0 +1,5 @@
+<zk>
+	<window title="Report" mode="modal" border="normal" width="800px" height="500px" maximizable="true" closable="true">
+		<jasperreport id="report" height="100%" />
+	</window>
+</zk>

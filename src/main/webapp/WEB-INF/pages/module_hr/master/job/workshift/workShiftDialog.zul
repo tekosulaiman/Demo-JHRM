@@ -1,0 +1,84 @@
+<zk>
+	<window id="windowWorkShift" title="Form Work Shift" border="normal" width="850px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.workshift.WorkShiftListVM')" onClose="@command('doClose')">
+		<borderlayout height="400px">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/>
+				</toolbar>
+			</north>
+			<center>
+				<vbox>
+					<grid>
+						<columns>
+							<column align="right" width="75px"/>
+							<column/>
+						</columns>
+						<rows>
+							<row>	
+								<label value="Shift Name"/>
+								<textbox/>
+							</row>
+							<row>	
+								<label value="From"/>
+								<timebox width="150px"/>
+							</row>
+							<row>	
+								<label value="To"/>
+								<timebox width="150px"/>
+							</row>
+							<row>	
+								<label value="Hour"/>
+								<intbox/>
+							</row>
+						</rows>
+					</grid>
+						
+					<grid>
+						<columns>
+							<column/>
+							<column align="center" width="75px"/>
+							<column/>
+						</columns>
+						<rows>
+							<row>	
+								<vbox>
+									<listbox>
+										<listhead sizable="true">
+											<listheader label="Available Employees" sort="auto(rigName)" />
+										</listhead>
+										<template name="model" var="secRight">
+										<listitem>
+											<listcell label="@bind(secRight.rigName)" />
+										</listitem>
+										</template>
+									</listbox>
+								</vbox>
+								
+								<vbox>
+									<button image="/images/icons/btn_right_double_arrow.png" onClick="@command('doChooseAll')" />
+									<button image="/images/icons/btn_right_arrow.png" onClick="@command('doChoose')" />
+									<button image="/images/icons/btn_left_arrow.png" onClick="@command('doRemove')" />
+									<button image="/images/icons/btn_left_double_arrow.png" onClick="@command('doRemoveAll')" />
+								</vbox>
+								
+								<vbox>
+									<listbox>
+										<listhead sizable="true">
+											<listheader label="Assigned Employees" sort="auto(rigName)" />
+										</listhead>
+										<template name="model" var="secRight">
+											<listitem>
+												<listcell label="@bind(secRight.rigName)" />
+											</listitem>
+										</template>
+									</listbox>
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

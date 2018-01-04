@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+.z-grid-body{
+	height: 100%
+}
+.z-grid-body>table {
+	height: 100%;
+}
+
+.z-grid-body>table>.z-row-inner{
+	height: 100%
+}
+.z-row-content {
+	height: 100%;
+}
+.jhrm-window-dialog{
+	height: 100%;
+}
+.jhrm-window-dialog > .z-window-content{
+	height: 100%;
+}

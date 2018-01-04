@@ -1,0 +1,37 @@
+<?page id="loginPage" title="Login Page" onLoad="win.doOverlapped();"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<window id="win" title="Form Login" border="normal" width="300px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal">
+ 
+	<!-- this form-login-page form is also used as the form-error-page to ask for a login again. -->
+    <html style="color:red" if="${not empty param.login_error}">
+    	<![CDATA[ Your login attempt was not successful, try again. Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message} ]]>        
+    </html>
+ 
+   <groupbox>
+        <caption>Login</caption>
+        <h:form id="f" name="f" action="j_spring_security_check" method="POST" xmlns:h="http://www.w3.org/1999/xhtml">
+            <grid>
+                <columns sizable="false">
+                	<column width="25%" />
+                    <column width="50%" />
+                </columns>
+                <rows>
+                    <row style="background:#FFFFFF; border:none">
+                    	<label value="Username" />
+                    	<textbox id="u" name="j_username" value="admin" mold="rounded"/>
+                  	</row>
+                    <row style="background:#FFFFFF; border:none">
+                    	<label value="Password" />
+                       	<textbox id="p" type="password" name="j_password" value="admin" mold="rounded"/>
+                 	</row>
+                    <row style="background:#FFFFFF; border:none" spans="2">
+                    	<div align="center">
+                     		<h:input type="submit" value="login" />
+                           	<h:input type="reset" value="Reset" />
+                        </div>
+                    </row>
+                </rows>
+           </grid>
+       </h:form>
+ 	</groupbox>
+</window>
