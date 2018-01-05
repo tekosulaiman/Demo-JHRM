@@ -32,8 +32,9 @@
 			<url>http://mavensync.zkoss.org/eval</url>
 		</repository>
 		<repository>
-			<id>co.id</id>
-			<url>file:///${project.basedir}/target/repo</url>
+			<id>project.local</id>
+			<name>project</name>
+			<url>file:${project.basedir}\src\repo</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
@@ -187,4 +188,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>co.id</groupId> 
+		<artifactId>Module-Sysadmin</artifactId> <version>1.0-SNAPSHOT</version> 
+		</dependency> <dependency> <groupId>co.id</groupId> <artifactId>Module-Hr</artifactId> 
+		<version>1.0-SNAPSHOT</version> </dependency> <dependency> <groupId>co.id</groupId> 
+		<artifactId>Module-Rest-Mobile</artifactId> <version>1.0-SNAPSHOT</version> 
+		</dependency> </dependencies> </dependencyManagement> -->
 </project>
