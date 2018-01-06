@@ -34,7 +34,7 @@
 		<repository>
 			<id>JHRM Backend</id>
 			<name>JHRM Repository</name>
-			<url>https://github.com/tekosulaiman/JHRM/tree/master/Module-Parent</url>
+			<url>http://demo-jhrm.byethost6.com/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
